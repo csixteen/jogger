@@ -24,3 +24,9 @@ func main() {
 }
 ```
 
+# Contributing
+
+If you find any issues or want to add any functionality, feel free to submit a Pull-request.
+
+# LICENSE
+[MIT](https://github.com/csixteen/jogger/blob/master/LICENSE), as always.
