@@ -24,6 +24,12 @@ func main() {
 }
 ```
 
+# Options
+
+There are currently two options that you can pass to `jogger.Run`:
+- `jogger.NoOutput()` - in case you want to suppress the output
+- `jogger.Timeout(d time.Duration)` - in case you want to change the default timout after which the process gets killed.
+
 # Contributing
 
 If you find any issues or want to add any functionality, feel free to submit a Pull-request.
