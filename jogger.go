@@ -34,7 +34,7 @@ type config struct {
 // Option is any option that the `Run` method may accept
 type Option func(*config)
 
-// NoOutput supresses the output of the executed command
+// NoOutput suppresses the output of the executed command
 func NoOutput() Option {
 	return func(c *config) {
 		c.noOutput = true
