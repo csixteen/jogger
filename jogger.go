@@ -1,7 +1,7 @@
 /*
 Package jogger implements a simple library that allows you to execute a given
 command with optional parameters and output the progress to stdout and stderr.
-You also have the option of supressing the output and change the timeout for
+You also have the option of suppressing the output and change the timeout for
 the command.
 
 Example:
