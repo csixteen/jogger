@@ -58,10 +58,10 @@ func Run(command string, args []string, opts ...Option) ([]byte, []byte, error) 
 	}
 
 	cmd := exec.Command(command, args...)
-
 	done := make(chan error)
 
-	// Checks for incoming signals
+	//------------------------------
+	//   Signal Handling
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt)
 	signal.Notify(c, syscall.SIGTERM)
@@ -73,14 +73,17 @@ func Run(command string, args []string, opts ...Option) ([]byte, []byte, error) 
 		<-c
 		done <- cmd.Process.Kill()
 	}()
+	//------------------------------
 
-	// Progress capture
+	//------------------------------
+	//    Progress capture
 	stdoutIn, _ := cmd.StdoutPipe()
 	stderrIn, _ := cmd.StderrPipe()
 
 	var stdoutBuf, stderrBuf bytes.Buffer
 	var stdout, stderr io.Writer
 
+	// MultiWriter works pretty much like `tee` in Unix
 	if cfg.noOutput {
 		stdout = io.MultiWriter(&stdoutBuf)
 		stderr = io.MultiWriter(&stderrBuf)
@@ -88,6 +91,7 @@ func Run(command string, args []string, opts ...Option) ([]byte, []byte, error) 
 		stdout = io.MultiWriter(os.Stdout, &stdoutBuf)
 		stderr = io.MultiWriter(os.Stderr, &stderrBuf)
 	}
+	//-------------------------------
 
 	// Starts the actual command
 	err := cmd.Start()
