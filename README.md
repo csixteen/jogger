@@ -8,7 +8,7 @@ I haven't tested this on Windows, but it probably won't work (read the *Overview
 
 # Examples
 
-```
+```go
 package main
 
 import "github.com/csixteen/jogger"
